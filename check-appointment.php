@@ -105,7 +105,7 @@
                                       
 
                                         <td><?php echo $row['appoitment_status']; ?></td>
-                                        <td><?php  echo "status";?> </td>
+                                        
                                         
 
                                             
