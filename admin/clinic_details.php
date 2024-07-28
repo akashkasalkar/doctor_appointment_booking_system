@@ -1,10 +1,22 @@
+<?php
+include_once('./header.php');
+include_once('./sidebar.php');
+$stmt = $con->prepare("SELECT clinic_name, clinic_address, clinic_phone FROM clinic");
+$stmt->execute();
+$result = $stmt->get_result();
 
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $clinicName = $row["clinic_name"];
+    $clinicAddress = $row["clinic_address"];
+    $clinicPhone = $row["clinic_phone"];
+} else {
+    echo "No clinic data found.";
+}
 
-
-<?php include_once('./header.php');?>
-
- 
-<?php include_once('./sidebar.php');?>
+$stmt->close();
+$con->close();
+?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -31,17 +43,17 @@
             
               <tr>
                 <th>Clinic Name</th>
-                <td><?php echo "Patil clinic" ?></td>
+                <td><?php echo $clinicName; ?></td>
                 
               </tr>
               <tr>
                 <th>Address</th>
-                <td><?php echo "Kangarli kh belgaum" ?></td>
+                <td><?php echo $clinicAddress; ?></td>
               </tr>
               <tr>
              
                 <th>Clinic Phone</th>
-                <td><?php echo "9742526326" ?></td>
+                <td><?php echo $clinicPhone; ?></td>
 
               </tr>
 

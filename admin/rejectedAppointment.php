@@ -2,29 +2,21 @@
 <?php include("./sidebar.php"); ?>
 
 <div class="content-wrapper">
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Rejected Appointments</h1>
-                </div>
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-12">
+
+          <div class="card">
+            <div class="card-header bg-info">
+              <h3 class="card-title h2">Rejected Appoitment</h3>
             </div>
-        </div>
-    </div>
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Rejected Appointments List</h3>
-                        </div>
-                        <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped" style="border: none;">  <thead>
+                  <tr class="text-center bg-dark">
                                         <th class="text-center">Appointment ID</th>
                                         <th class="text-center">Patient Name</th>
+                                        <th class="text-center">Doctor Name</th>
                                         <th class="text-center">Patient Email</th>
                                         <th class="text-center">Patient Phone</th>
                                         <th class="text-center">Appointment Time</th>
@@ -33,10 +25,12 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                    $qry = "SELECT a.appoitment_id, u.user_name, u.user_email, u.phone, a.appoitment_time, a.appoitment_status
+                                    $qry = "SELECT a.appoitment_id, u.user_name, u.user_email, u.phone, a.appoitment_time, a.appoitment_status, user.user_name AS doctor_name
                                     FROM appoitments a
                                     INNER JOIN user u ON a.fk_patient_id = u.user_id
-                                    WHERE a.appoitment_status = 'Cancelled'";
+                                    INNER JOIN user ON a.fk_doctor_id = user.user_id  -- Join with user table again for doctor info
+                                    WHERE a.appoitment_status = 'Cancelled' ";
+                                    
                                     $exc = mysqli_query($con, $qry);
 
                                     while ($row = mysqli_fetch_array($exc)) {
@@ -44,6 +38,7 @@
                                         <tr>
                                             <td class="text-center"><?php echo $row['appoitment_id']; ?></td>
                                             <td class="text-center"><?php echo $row['user_name']; ?></td>
+                                            <td class="text-center"><?php echo $row['doctor_name']; ?></td>
                                             <td class="text-center"><?php echo $row['user_email']; ?></td>
                                             <td class="text-center"><?php echo $row['phone']; ?></td>
                                             <td class="text-center"><?php echo $row['appoitment_time']; ?></td>
@@ -55,12 +50,12 @@
                                     ?>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
+                            </div>
             </div>
-        </div>
-    </section>
-</div>
+          </div>
+
+      </div></div>
+  </div></div>
+
 
 <?php include("./footer.php"); ?>

@@ -39,16 +39,38 @@
                             <div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="images/slider/portrait-successful-mid-adult-doctor-with-crossed-arms.jpg" class="img-fluid" alt="">
+                                        <img src="images/slider/img13.jpg" style="width:90vw; height: 100vh; class="img-fluid" alt="">
                                     </div>
 
                                     <div class="carousel-item">
-                                        <img src="images/slider/young-asian-female-dentist-white-coat-posing-clinic-equipment.jpg" class="img-fluid" alt="">
+                                        <img src="images/slider/img4.jpg" style="width:90vw; height: 100vh; class="img-fluid" alt="">
                                     </div>
 
                                     <div class="carousel-item">
-                                        <img src="images/slider/doctor-s-hand-holding-stethoscope-closeup.jpg" class="img-fluid" alt="">
+                                        <img src="images/slider/img2.jpg" style="width:90vw; height: 100vh; class="img-fluid" alt="">
                                     </div>
+
+                                    <div class="carousel-item">
+                                        <img src="images/slider/img3.jpg" style="width:90vw; height: 100vh; class="img-fluid" alt="">
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <img src="images/slider/img1.jpg" style="width:90vw; height: 100vh; class="img-fluid" alt="">
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <img src="images/slider/img7.jpg" style="width:90vw; height: 100vh; class="img-fluid" alt="">
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <img src="images/slider/img10.jpg" style="width:90vw; height: 100vh; class="img-fluid" alt="">
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <img src="images/slider/img12.jpg" style="width:90vw; height: 100vh; class="img-fluid" alt="">
+                                    </div>
+
+
                                 </div>
                             </div>
 
@@ -85,11 +107,11 @@
                     <div class="row">
 
                         <div class="col-lg-6 col-6 ps-0">
-                            <img src="images/gallery/medium-shot-man-getting-vaccine.jpg" class="img-fluid galleryImage" alt="get a vaccine" title="get a vaccine for yourself">
+                            <img src="images/gallery/img3.jpg" style="width: 100%; height: 450px; class="img-fluid galleryImage" alt="get a vaccine" title="get a vaccine for yourself">
                         </div>
 
                         <div class="col-lg-6 col-6 pe-0">
-                            <img src="images/gallery/female-doctor-with-presenting-hand-gesture.jpg" class="img-fluid galleryImage" alt="wear a mask" title="wear a mask to protect yourself">
+                            <img src="images/gallery/img4.jpg" style="width: 100%; height: 450px; class="img-fluid galleryImage" alt="wear a mask" title="wear a mask to protect yourself">
                         </div>
 
                     </div>
