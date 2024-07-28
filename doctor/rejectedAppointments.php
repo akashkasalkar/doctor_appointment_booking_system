@@ -41,7 +41,8 @@
                         $qry = "SELECT * from user u,appoitments ap
                                 WHERE ap.fk_doctor_id ='$doctor_id'
                                 and u.user_type='Patient'
-                                and ap.appoitment_status ='Cancelled'";
+                                and ap.appoitment_status ='Cancelled'
+                                and u.user_id = ap.fk_patient_id";
                         $exc = mysqli_query($con,$qry);
                         while($row = mysqli_fetch_array($exc)){
                       ?>

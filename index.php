@@ -206,17 +206,21 @@
                                         $result = mysqli_query($con, $alredy_user_exist_qry);  
 						                $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
 
-                                        $last_insertd_id=$row['user_id'];
                                       
 						                $count = mysqli_num_rows($result);
                                         
+                                        if($count > 0){
+                                            $last_insertd_id=$row['user_id'];
 
-                                        $appointment_alredy_qry="select * from appoitments where fk_patient_id='$last_insertd_id' 
+                                            $appointment_alredy_qry="select * from appoitments where fk_patient_id='$last_insertd_id' 
                                         and fk_doctor_id='$fk_doctor_id'
                                         and appoitment_status='Scheduled'";
                                         $app_result = mysqli_query($con, $appointment_alredy_qry);  
 						                // $app_row = mysqli_fetch_array($app_result, MYSQLI_ASSOC); 
 						                $app_count = mysqli_num_rows($app_result);
+                                        }
+
+                                        
 
                                         if($app_count >0){
                                             echo "<script>alert('Appointment Alrdey Scheduled')</script>";
@@ -232,6 +236,7 @@
 
 
                                             }
+                                           
 
                                             // add data in appointmnet table
                                             $qry2 = "INSERT INTO `appoitments`(`fk_patient_id`, `fk_doctor_id`, `appoitment_time`, `message`) VALUES ('$last_insertd_id','$fk_doctor_id','$final_time','$message') ";
