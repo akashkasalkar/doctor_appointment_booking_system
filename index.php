@@ -146,7 +146,11 @@
                                         </div>
 
                                         <div class="col-lg-6 col-12">
-                                            <input type="date" name="appointment_date" id="date" value="" class="form-control" required>
+                                            <?php
+                                                $today = date('d')+1;
+                                                $today_date = date('Y-m-'.$today)
+                                            ?>
+                                            <input type="date" name="appointment_date" id="date" value="" min="<?php echo $today_date ?>" class="form-control" required>
                                             
                                         </div>
 

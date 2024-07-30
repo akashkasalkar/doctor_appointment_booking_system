@@ -46,7 +46,21 @@
     
                     $user_type = "Doctor";
                     $user_password = "12345"; // You should handle password securely
-                 
+                    
+
+                    $alredy_user_exist_qry = "select * from user where user_email='$user_email'";
+                    $result = mysqli_query($con, $alredy_user_exist_qry);  
+                    $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+
+                  
+                    $count = mysqli_num_rows($result);
+
+                    if($count > 0){
+                      echo "<script>alert('Doctor Alredy Added.')</script>";
+                    }
+                  else{
+
+                  
 
                     // Assuming $con is your database connection
                     $qry = "INSERT INTO user ( user_name, user_email, user_password, user_type) 
@@ -65,6 +79,7 @@
                     } else {
                       echo "<script>alert('Error')</script>";
                     }
+                  }
                   }
                   ?>
       </div></div>
