@@ -1,5 +1,10 @@
 <?php
     include "./left_nav.php";
+
+    if ($password_status == 0){
+        header('Location:./changePassword.php');
+
+    }
 ?>
     <div class="col-12">
                 <div class="row">
@@ -12,6 +17,7 @@
                              $user_total=0;
                              $user_slot_query="SELECT * from user u,appoitments ap
                                 WHERE ap.fk_doctor_id ='$doctor_id'
+                                and u.user_id = ap.fk_patient_id
                                 and u.user_type='Patient'";
                              $user_slot_query_run=mysqli_query($con,$user_slot_query);
                              $user_total=mysqli_num_rows($user_slot_query_run)

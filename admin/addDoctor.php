@@ -45,7 +45,8 @@
                  
     
                     $user_type = "Doctor";
-                    $user_password = "12345"; // You should handle password securely
+                    // $user_password = "12345"; // You should handle password securely
+                    $user_password=rand(1000,9999);
                     
 
                     $alredy_user_exist_qry = "select * from user where user_email='$user_email'";

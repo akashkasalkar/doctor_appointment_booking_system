@@ -70,7 +70,7 @@
 			?>
 
 <div class="simple-page-footer">
-	<p><a href="forgot-password.php">FORGOT YOUR PASSWORD ?</a></p>
+	<!-- <p><a href="forgot-password.php">FORGOT YOUR PASSWORD ?</a></p> -->
 	
 </div><!-- .simple-page-footer -->
 

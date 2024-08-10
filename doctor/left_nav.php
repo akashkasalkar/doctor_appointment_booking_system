@@ -1,4 +1,8 @@
-<?php include '../dbconn.php' ?>
+<?php 
+    include '../dbconn.php';
+    include "../email.php"; 
+
+?>
 
 <?php
 
@@ -17,8 +21,12 @@
         $dr_email = $row['user_email'];
         $dr_phone = $row['phone'];
         $dr_address = $row['address'];
+        $password_status = $row['pass_change_status'];
+
+        
 
     }
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +90,7 @@
                         <?php echo $dr_email ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item " href="#">Change Password</a>
+                        <a class="dropdown-item " href="./changePassword.php">Change Password</a>
 
                         <a class="dropdown-item text-danger" href="./logout.php">Logout</a>
 

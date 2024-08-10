@@ -1,5 +1,9 @@
 <?php
     include "./left_nav.php";
+    if ($password_status == 0){
+        header('Location:./changePassword.php');
+
+    }
 ?>
 <?php
     if(isset($_GET['appoitment_id'])){
@@ -104,10 +108,59 @@
             if(isset($_GET['appoitment_status'])){
                 $appoitment_id = $_GET['appoitment_id'];
                 $appoitment_status = $_GET['appoitment_status'];
+                
+
+                $patient_qry = "select * from appoitments ap,user u
+                            where ap.fk_patient_id = u.user_id
+                            and ap.appoitment_id='$appoitment_id'
+                            ";
+                 $patient_exc = mysqli_query($con,$patient_qry);
+
+                 while( $patient_row =  mysqli_fetch_array($patient_exc))
+                {
+                    $patient_name = $patient_row['user_name'];
+                    $patient_email = $patient_row['user_email'];
+                    $appoitment_time = $patient_row['appoitment_time'];
+
+                }
+
+
+                $patient_qry = "select * from appoitments ap,user u
+                            where ap.fk_doctor_id = u.user_id
+                            and ap.appoitment_id='$appoitment_id'
+                            ";
+                 $patient_exc = mysqli_query($con,$patient_qry);
+
+                 while( $patient_row =  mysqli_fetch_array($patient_exc))
+                {
+                    $doctor_name = $patient_row['user_name'];
+                    // $patient_email = $patient_row['user_email'];
+                    // $appoitment_time = $patient_row['appoitment_time'];
+
+                }
 
                 $qry = "UPDATE `appoitments` SET appoitment_status='$appoitment_status'  where appoitment_id='$appoitment_id'";
                 $exc=mysqli_query($con,$qry);
                 if($exc){
+
+                    if($appoitment_status == "Accepted"){
+                        $msg="Dear ".$patient_name.",<br/><br/> ";
+                        $msg.="Your Appointment is <span style='color:green;'> Scheduled</span> at ".$appoitment_time." with Dr.".$doctor_name."<br/> <br/>";
+                        $msg.="Please be on time for the same. For any queries please call clinic <b>8073383574</b>.<br/><br/> ";
+                        $msg.="Regards,<br/>";
+                        $msg.="<b>VISION CARE - Belgaum</b>";
+                    }
+                    else
+                    {
+                        $msg="Dear ".$patient_name.",<br/><br/> ";
+                        $msg.="Your Appointment is <span style='color:red;'> Cancelled</span> at ".$appoitment_time." with Dr.".$doctor_name."<br/> <br/>";
+                        $msg.="For any queries please call clinic <b>8073383574</b>.<br/><br/> ";
+                        $msg.="Regards,<br/>";
+                        $msg.="<b>VISION CARE - Belgaum</b>";
+                    }
+                    
+
+                    phpmailsend($patient_email, 'VISION CARE - APPOINTMENT DETAILS', $msg);
                     echo "<script>alert('Appointment $appoitment_status')
                                     location = './viewAllAppointment.php'</script>";
                 }

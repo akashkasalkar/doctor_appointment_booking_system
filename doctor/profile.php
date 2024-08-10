@@ -1,5 +1,9 @@
 <?php
     include "./left_nav.php";
+    if ($password_status == 0){
+        header('Location:./changePassword.php');
+
+    }
 ?>
 <?php
     if(isset($_GET['appoitment_id'])){

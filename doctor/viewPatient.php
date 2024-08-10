@@ -1,5 +1,9 @@
 <?php
     include "./left_nav.php";
+    if ($password_status == 0){
+        header('Location:./changePassword.php');
+
+    }
 ?>
 <link rel="stylesheet" href="https://cdn.datatables.net/2.1.0/css/dataTables.dataTables.css" />
 <script src="https://cdn.datatables.net/2.1.0/js/dataTables.js"></script>
@@ -29,6 +33,7 @@
                         <?php
                             $qry = "SELECT * from user u,appoitments ap
                                 WHERE ap.fk_doctor_id ='$doctor_id'
+                                and u.user_id = ap.fk_patient_id
                                 and u.user_type='Patient'   ";
                             $exc=mysqli_query($con,$qry);
                             while($row=mysqli_fetch_array($exc)){

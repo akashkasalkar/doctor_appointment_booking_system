@@ -42,6 +42,9 @@
                              <li class="nav-item active">
                                 <a class="nav-link" href="doctor/login.php">Doctor</a>
                             </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="admin/index.php">Admin</a>
+                            </li>
                         </ul>
                     </div>
 
