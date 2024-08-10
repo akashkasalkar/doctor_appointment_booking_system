@@ -1,4 +1,6 @@
-<?php include '../dbconn.php' ?>
+<?php include '../dbconn.php';
+    include "../email.php"; 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,53 +29,66 @@
 			
 		</div><!-- logo -->
 		<div class="simple-page-form animated flipInY" id="login-form">
-	<h4 class="form-title m-b-xl text-center">Doctor Login</h4>
+	<h4 class="form-title m-b-xl text-center">Forgot Password</h4>
 	<form method="post" name="login">
 		<div class="form-group">
 			<input type="text" class="form-control" placeholder="Enter Registered Email ID" required="true" name="email">
 		</div>
 
-		<div class="form-group">
+		<!-- <div class="form-group">
 			<input type="password" class="form-control" placeholder="Password" name="password" required="true">
-		</div>
+		</div> -->
 
 		
-		<input type="submit" class="btn btn-primary" name="login" value="Sign IN">
+		<input type="submit" class="btn btn-primary" name="submit" value="Reset Password">
 	</form>
 	<hr />
 	<!-- <a href="signup.php">Signup/Registration</a> -->
 </div><!-- #login-form -->
 <?php 
 				session_start();
-				if (isset($_POST['login'])) {
+				if (isset($_POST['submit'])) {
 					$email=$_POST['email'];
-					$pass=$_POST['password'];
+                    $user_password=rand(1000,9999);
+				
 					$user_type="Doctor";
 
-						 $sql = "select * from user where user_email='$email' and user_password='$pass' and user_type='$user_type'";  
+						 $sql = "select * from user 
+                         where user_email='$email' and user_type='$user_type'";  
 						$result = mysqli_query($con, $sql);  
 						$row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
 						$count = mysqli_num_rows($result);  
 						
 						if ($count==1) {
+
+                            $update_pass_qry = "UPDATE `user` SET user_password='$user_password',pass_change_status='0'
+                            where user_email='$email'";
+
+                            $rest_exc = mysqli_query($con,$update_pass_qry);
+
+                            if($rest_exc){
+                                $msg="your new password is <br/>, ";
+                                $msg.="login to VISION CARE <br/> ";
+                                $msg.="Username : $email ";
+                                $msg.="<br />Password : $password";
+                                phpmailsend($email, 'New Password for Vision Care', $msg);
+
+                                echo "<script>alert('Your new password sent to your email.')
+                                location='./login.php'
+                                </script>";
+                            }
 							
-							 $_SESSION['email']=$email;
-							echo "<script>window.location='./dashboard.php'</script>";
+							
 						}
 						else
 						{
-							echo "<script>alert('username/password wrong.')</script>";
+							echo "<script>alert('email wrong.')</script>";
 						}
 					
 					
 				}
 			?>
 
-<div class="simple-page-footer">
-	
-	<!-- <p><a href="forgot_password.php">FORGOT YOUR PASSWORD ?</a></p> -->
-	
-</div><!-- .simple-page-footer -->
 
 
 	</div><!-- .simple-page-wrap -->
